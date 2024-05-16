@@ -34,6 +34,13 @@ if [[ "$userName" == "root" ]]; then
     exit 
 fi    
 
+wsl2=$(uname -r | grep "WSL2")
+if [[ -z '$wsl2' ]]; then
+    echo -e '\e[7mCannot run on WSL1'
+    echo 'Upgrade to WSL2 and set Ubuntu to use that version'
+    exit
+fi
+
 #################################################################################
 function setupSSH() 
 {
